@@ -1,4 +1,4 @@
-package com.isharipov;
+package com.isharipov.homework2;
 
 /**
  * Created by Илья on 24.07.2016.
