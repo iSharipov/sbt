@@ -25,27 +25,19 @@ public class Person {
         return spouse;
     }
 
-    public void setSpouse(Person spouse) {
-        this.spouse = spouse;
-    }
-
-    public Person getPerson() {
-        return this;
-    }
-
     public boolean marry(Person person) {
         if (this.isMan() != person.isMan()) {
             if (this.getSpouse() != null || person.getSpouse() != null) {
                 if (divorce(this, person)) {
                     this.spouse = person;
-                    person.setSpouse(this);
+                    person.spouse = this;
                     return true;
                 } else {
                     return false;
                 }
             } else {
                 this.spouse = person;
-                person.setSpouse(this);
+                person.spouse = this;
                 return true;
             }
         } else {
@@ -55,11 +47,11 @@ public class Person {
 
     public boolean divorce(Person person, Person anotherPerson) {
         if (person.getSpouse() != null) {
-            person.getSpouse().getPerson().setSpouse(null);
-            person.setSpouse(null);
+            person.getSpouse().spouse = null;
+            person.spouse = null;
         } else if (anotherPerson.getSpouse() != null) {
-            anotherPerson.getSpouse().getPerson().setSpouse(null);
-            anotherPerson.setSpouse(null);
+            anotherPerson.getSpouse().spouse = null;
+            anotherPerson.spouse = null;
         }
         return true;
     }
