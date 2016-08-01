@@ -2,63 +2,40 @@ package com.isharipov.homework3;
 
 import java.util.*;
 
-/**
- * Created by Илья on 29.07.2016.
- */
 public class Solution {
-    public static void main(String[] args) {
-        List<Integer> l = new ArrayList<>();
-        Scanner scanner = new Scanner(System.in);
-        List<Map<Integer, Integer>> list = new ArrayList<>();
-        Integer counter = Integer.parseInt(scanner.nextLine());
-        for (int i = 0; i < counter; i++) {
-            String[] s = scanner.nextLine().split(" ");
-            Map<Integer, Integer> map = new HashMap<>();
-            if (s.length < 2) {
-                map.put(Integer.parseInt(s[0]), null);
-            } else {
-                map.put(Integer.parseInt(s[0]), Integer.parseInt(s[1]));
-            }
-//            list.add(map);
 
-//            for (Map<Integer, Integer> m : list) {
-                for (Map.Entry entry : map.entrySet()) {
-                    if (entry.getKey().equals(1)) {
-                        l.add((Integer) entry.getValue());
-                    }else if(entry.getKey().equals(2)){
-                        Integer min = Collections.min(l);
-                        l.remove(min);
-                        System.out.println(min);
-                    }
-//                }
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        int counter = Integer.parseInt(scanner.nextLine());
+        NavigableMap<Integer, Integer> map = new TreeMap<>();
+        for (int i = 0; i < counter; i++) {
+            int op = scanner.nextInt();
+            int i1;
+            if (op == 1) {
+                i1 = scanner.nextInt();
+                if (map.containsKey(i1)) {
+                    map.put(i1, map.get(i1) + 1);
+                } else {
+                    map.put(i1, 1);
+                }
+            } else if (op == 2) {
+//                Map.Entry<Integer, Integer> min = Collections.min(map.entrySet(), new Comparator<Map.Entry<Integer, Integer>>() {
+//                    @Override
+//                    public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
+//                        return o1.getKey().compareTo(o2.getKey());
+//                    }
+//                });
+                Map.Entry<Integer, Integer> min = map.firstEntry();
+                Integer value = min.getValue();
+                Integer key = min.getKey();
+                if (value == 1) {
+                    map.remove(min.getKey());
+                } else {
+                    map.replace(min.getKey(), --value);
+                }
+                System.out.println(key);
             }
         }
-
-//        Iterator<Map<Integer, Integer>> iter = list.iterator();
-//        while (iter.hasNext()) {
-//            Map<Integer, Integer> next = iter.next();
-//            for (Map.Entry entry : next.entrySet()) {
-//                if (entry.getValue() == null) {
-//
-//                    iter.remove();
-//                }
-//            }
-//        }
-//        List<Integer> l = new ArrayList<>();
-//        for (Map<Integer, Integer> m : list) {
-//            for (Map.Entry entry : m.entrySet()) {
-//                if (entry.getKey().equals(1)) {
-//                    l.add((Integer) entry.getValue());
-//                }else if(entry.getKey().equals(2)){
-//                    Integer min = Collections.min(l);
-//                    l.remove(min);
-//                    System.out.println(min);
-//                }
-//            }
-//        }
-
-//        for (Integer m : l) {
-//            System.out.println(m);
-//        }
     }
 }

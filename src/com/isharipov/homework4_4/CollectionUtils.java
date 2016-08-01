@@ -1,6 +1,7 @@
 package com.isharipov.homework4_4;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -45,14 +46,21 @@ public class CollectionUtils {
     }
 
 
-    public static List range(List list, Object min, Object max) {
-
-        return list;
+    public static <T extends Comparable<? super T>> List range(List<T> list, T min, T max) {
+        List<T> dest = new ArrayList<>(list);
+        List<T> result = new ArrayList<>();
+        for (T elem : dest) {
+            if ((elem.compareTo(min) == 1 || elem.compareTo(min) == 0) && ((elem.compareTo(max) == -1 || elem.compareTo(max) == 0))) {
+                result.add(elem);
+            }
+        }
+        Collections.sort(result);
+        return result;
     }
-
 
     public static List range(List list, Object min, Object max, Comparator comparator) {
 
         return list;
     }
+
 }
