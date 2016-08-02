@@ -41,8 +41,7 @@ public class CollectionUtils {
 
 
     public static boolean containsAny(List c1, List c2) {
-
-        return false;
+        return !Collections.disjoint(c1, c2);
     }
 
 
@@ -58,9 +57,17 @@ public class CollectionUtils {
         return result;
     }
 
-    public static List range(List list, Object min, Object max, Comparator comparator) {
+    public static <T> List range(List<T> list, T min, T max, Comparator<T> comparator) {
+        List<T> result = new ArrayList<>();
+        for (T t : list) {
+            int minCmp = comparator.compare(t, min);
+            int maxCmp = comparator.compare(t, max);
 
-        return list;
+            if ((minCmp == 0 || minCmp == 1) && (maxCmp == -1) || maxCmp == 0) {
+                result.add(t);
+            }
+        }
+        return result;
     }
-
 }
+
