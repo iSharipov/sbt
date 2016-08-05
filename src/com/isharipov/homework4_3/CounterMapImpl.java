@@ -21,8 +21,8 @@ public class CounterMapImpl<E> implements CounterMap<E> {
     }
 
     @Override
-    public void addAll(CounterMap<E> source) {
-        for (Map.Entry<E, Integer> entry : source.getMap().entrySet()) {
+    public void addAll(CounterMap<? extends E> source) {
+        for (Map.Entry<? extends E, Integer> entry : source.getMap().entrySet()) {
             this.add(entry.getKey());
         }
     }

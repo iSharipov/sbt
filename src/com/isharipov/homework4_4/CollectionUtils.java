@@ -57,7 +57,7 @@ public class CollectionUtils {
         return result;
     }
 
-    public static <T> List range(List<T> list, T min, T max, Comparator<T> comparator) {
+    public static <T> List range(List<? extends T> list, T min, T max, Comparator<? super T> comparator) {
         List<T> result = new ArrayList<>();
         for (T t : list) {
             int minCmp = comparator.compare(t, min);

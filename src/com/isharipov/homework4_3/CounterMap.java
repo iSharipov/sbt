@@ -15,7 +15,7 @@ public interface CounterMap<E> {
 
     int size();
 
-    void addAll(CounterMap<E> source);
+    void addAll(CounterMap<? extends E> source);
 
     Map<E, Integer> getMap();
 
