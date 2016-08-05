@@ -6,7 +6,11 @@ package com.isharipov.homework5_3;
 public interface Terminal {
     boolean checkPin(String pin);
 
-    Double checkBalance(String cardNumber);
+    String checkBalance();
 
-    void registerCard(Card card);
+    boolean putMoney(String amount);
+
+    void insertCard(Card card);
+
+    boolean takeMoney(String amount);
 }

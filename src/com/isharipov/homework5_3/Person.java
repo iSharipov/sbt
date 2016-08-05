@@ -9,4 +9,8 @@ public class Person {
     public Person(Card card) {
         this.card = card;
     }
+
+    public Card getCard() {
+        return card;
+    }
 }
