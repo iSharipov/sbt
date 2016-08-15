@@ -14,6 +14,8 @@ public class CustomClassLoader extends URLClassLoader {
 
     @Override
     public Class<?> loadClass(String name) throws ClassNotFoundException {
-        return super.loadClass(name);
+        if (name.contains("com.isharipov.homework7.Plugin") || name.startsWith("java")) {
+            return super.loadClass(name);
+        } else return findClass(name);
     }
 }

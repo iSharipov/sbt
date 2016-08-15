@@ -8,6 +8,7 @@ import java.net.URL;
  * Created by Илья on 11.08.2016.
  */
 public class PluginManager {
+
     private final String pluginRootDirectory;
 
     public PluginManager(String pluginRootDirectory) {
@@ -17,14 +18,17 @@ public class PluginManager {
     public Plugin load(String pluginName, String pluginClassName) {
         Plugin plugin = null;
         try {
-            File file = new File(System.getProperty("usr.dir")+"\\"+pluginRootDirectory + "\\" + pluginName);
+            String strToUrl = new StringBuilder(System.getProperty("user.dir"))
+                    .append("/")
+                    .append(pluginRootDirectory)
+                    .append("/")
+                    .append(pluginName).toString();
+
+            File file = new File(strToUrl);
             URL url = file.toURI().toURL();
             URL[] urls = new URL[]{url};
-            CustomClassLoader classLoader = new CustomClassLoader(urls);
-            System.out.println(classLoader.loadClass(pluginClassName).getName());
-            plugin = (Plugin) classLoader.loadClass(pluginClassName).newInstance();
-
-
+            ClassLoader urlClassLoader = new CustomClassLoader(urls);
+            plugin = (Plugin) urlClassLoader.loadClass(pluginClassName).newInstance();
         } catch (MalformedURLException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }

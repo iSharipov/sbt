@@ -5,9 +5,9 @@ package com.isharipov.homework7;
  */
 public class Main {
     public static void main(String[] args) {
-        Plugin plugin = new PluginImpl("New Plugin");
-        System.out.println(System.getProperty("user.dir"));
-        Plugin loadedPlugin = new PluginManager("pluginRootDirectory").load("1", "com.isharipov.homework7.PluginImpl");
-        System.out.println(loadedPlugin.getName());
+        Plugin loadedPlugin1 = new PluginManager("pluginRootDirectory").load("1", "com.isharipov.homework7.PluginImpl");
+        System.out.println(loadedPlugin1.getName());
+        Plugin loadedPlugin2 = new PluginManager("pluginRootDirectory").load("2", "com.isharipov.homework7.PluginImpl");
+        System.out.println(loadedPlugin2.getName());
     }
 }
